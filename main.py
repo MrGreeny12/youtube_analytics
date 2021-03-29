@@ -36,14 +36,20 @@ class Data:
 
 
   def createJson(self):
-
+    '''
+    take youtube-data
+    :return: data.json
+    '''
     with open('data.json', 'w') as f:
       json.dump(self.data, f)
       print('Done')
 
 
   def reformateJsonFile(self):
-
+    '''
+    takes the json - file and changes the need txt - format
+    :return: data.txt
+    '''
     self.createJson()
     with open(self.file, 'r') as f:
       data = json.loads(f.read())
@@ -64,8 +70,6 @@ class Data:
 
 
 if __name__ == '__main__':
-  # Disable OAuthlib's HTTPs verification when running locally.
-  # *DO NOT* leave this option enabled when running in production.
   os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
   youtubeAnalytics = get_service()
@@ -80,5 +84,5 @@ if __name__ == '__main__':
     prettyPrint=True,
     filters='video==X4fb6gaqITA',
   )
-  version1 = Data(jsonFile='data.json', youtubeData=youtubeData)
-  version1.reformateJsonFile()
+  myVideo = Data(jsonFile='data.json', youtubeData=youtubeData)
+  myVideo.reformateJsonFile()
